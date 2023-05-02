@@ -1,7 +1,50 @@
 # dalle-image-generator
 This Python script provides a method to access OpenAI's DALL-E model to generate images based on text descriptions.
 ## How to Use the generate_image() Method:
-Call the generate_image method using the following parameters:
+### Download the following libraries:
+```bash
+pip install openai
+```
+### 1. Import the following:
+```python
+# OPTIONAL: Imports for encoding/decoding API key to keep it out of the code
+import configparser
+from base64 import b64decode
+
+# Imports for openai and openai error handling
+import openai
+from openai.error import InvalidRequestError
+
+# Imports for recieving and displaying generated images
+import datetime
+import webbrowser
+```
+### 2. Connect to the OpenAI API:
+#### Store your API key credentials.ini file (optional)
+```ini
+; Stores the API Key in an initialization (.ini) file so that it doesn't appear in the code.
+[openai]
+APIKEY = xx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+#### Connect to the openai API
+If using credentials.ini:
+```python
+# Create an instance of the ConfigParser class and store it in config
+config = configparser.ConfigParser()
+
+# Read the credentials.ini file and store the API key into API_KEY
+config.read("credentials.ini")
+API_KEY = config["openai"]["APIKEY"]
+
+# Set the openai api key property to my API key
+openai.api_key = API_KEY
+```
+If hardcoding API key:
+```python
+# Set the openai api key property to my API key
+openai.api_key = "xx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+```
+### 3. Call the generate_image method using the following parameters:
 ```python
 #===============================================================================================
 # Generate an image using DALL-E
